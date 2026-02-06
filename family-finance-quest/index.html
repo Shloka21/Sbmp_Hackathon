@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Finance Quest - Needs vs Wants</title>
+    <meta name="description"
+        content="An educational game teaching kids about money management, needs vs wants, through fun mini-games">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Nunito:wght@400;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div id="game-container">
+        <!-- Loading Screen -->
+        <div id="loading-screen" class="screen active">
+            <div class="loading-content">
+                <h1 class="pixel-text">🏠 Family Finance Quest</h1>
+                <div class="loading-bar">
+                    <div class="loading-progress"></div>
+                </div>
+                <p>Loading assets...</p>
+            </div>
+        </div>
+
+        <!-- Menu Screen -->
+        <div id="menu-screen" class="screen">
+            <div class="menu-content">
+                <h1 class="pixel-text title-glow">🏠 Family Finance Quest</h1>
+                <p class="subtitle">Learn Needs vs Wants!</p>
+                <div class="menu-buttons">
+                    <button id="play-btn" class="menu-btn primary">▶ Start Game</button>
+                    <button id="how-to-play-btn" class="menu-btn">📖 How to Play</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- How To Play Screen -->
+        <div id="tutorial-screen" class="screen">
+            <div class="tutorial-content glass-panel">
+                <h2 class="pixel-text">📖 How to Play</h2>
+                <div class="tutorial-steps">
+                    <div class="step">
+                        <span class="step-icon">🏠</span>
+                        <p><strong>Home:</strong> Mom gives you daily tasks - buy what she needs!</p>
+                    </div>
+                    <div class="step">
+                        <span class="step-icon">🍬</span>
+                        <p><strong>Candy Crush:</strong> Match 3+ candies to earn coins!</p>
+                    </div>
+                    <div class="step">
+                        <span class="step-icon">💼</span>
+                        <p><strong>Work:</strong> Complete tasks to earn more coins (uses stamina)</p>
+                    </div>
+                    <div class="step">
+                        <span class="step-icon">🛒</span>
+                        <p><strong>Market:</strong> Buy food to restore stamina, and items for Mom!</p>
+                    </div>
+                    <div class="step warning">
+                        <span class="step-icon">❤️</span>
+                        <p><strong>Watch your stamina!</strong> No food = no work = game over!</p>
+                    </div>
+                </div>
+                <button id="back-to-menu-btn" class="menu-btn">← Back to Menu</button>
+            </div>
+        </div>
+
+        <!-- World Map Screen -->
+        <div id="world-screen" class="screen">
+            <div id="hud">
+                <div class="hud-left">
+                    <div class="hearts-container">
+                        <span id="hearts">❤️❤️❤️</span>
+                    </div>
+                    <div class="coins-container">
+                        <span class="coin-icon">🪙</span>
+                        <span id="coins">0</span>
+                    </div>
+                </div>
+                <div class="hud-center">
+                    <span id="day-display">Day 1</span>
+                </div>
+                <div class="hud-right">
+                    <button id="tasks-btn" class="hud-btn">📋 Tasks</button>
+                </div>
+            </div>
+            <div id="world-map">
+                <img src="assets/images/world_map.png" alt="World Map" id="map-image">
+                <!-- Player Character -->
+                <div id="player">
+                    <div class="player-sprite">🧒</div>
+                </div>
+                <!-- Zone Interaction Prompt -->
+                <div id="zone-prompt" class="hidden">
+                    <span>Press <kbd>SPACE</kbd> to enter</span>
+                </div>
+                <div class="zone-overlay" id="candy-zone" data-zone="candy">
+                    <span class="zone-label">🍬 Play</span>
+                </div>
+                <div class="zone-overlay" id="home-zone" data-zone="home">
+                    <span class="zone-label">🏠 Home</span>
+                </div>
+                <div class="zone-overlay" id="market-zone" data-zone="market">
+                    <span class="zone-label">🛒 Market</span>
+                </div>
+                <div class="zone-overlay" id="work-zone" data-zone="work">
+                    <span class="zone-label">💼 Work</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Candy Crush Game Screen -->
+        <div id="candy-screen" class="screen">
+            <div class="game-header">
+                <button class="back-btn" data-target="world">← Back</button>
+                <h2>🍬 Candy Crush</h2>
+                <div class="mini-hud">
+                    <span class="coin-icon">🪙</span>
+                    <span id="candy-coins">0</span>
+                </div>
+            </div>
+            <div id="candy-board"></div>
+            <div class="game-info">
+                <p>Match 3+ candies to earn coins!</p>
+                <button id="finish-candy-btn" class="action-btn">✓ Done Playing</button>
+            </div>
+        </div>
+
+        <!-- Work Screen -->
+        <div id="work-screen" class="screen">
+            <div class="game-header">
+                <button class="back-btn" data-target="world">← Back</button>
+                <h2>💼 Work Zone</h2>
+                <div class="mini-hud">
+                    <span>❤️</span>
+                    <span id="work-stamina">3</span>
+                </div>
+            </div>
+            <div id="work-tasks" class="tasks-grid"></div>
+        </div>
+
+        <!-- Market Screen -->
+        <div id="market-screen" class="screen">
+            <div class="game-header">
+                <button class="back-btn" data-target="world">← Back</button>
+                <h2>🛒 Market</h2>
+                <div class="mini-hud">
+                    <span class="coin-icon">🪙</span>
+                    <span id="market-coins">0</span>
+                </div>
+            </div>
+            <div id="shop-items" class="shop-grid"></div>
+            <div id="inventory-section">
+                <h3>🎒 Your Items</h3>
+                <div id="inventory"></div>
+            </div>
+        </div>
+
+        <!-- Home Screen -->
+        <div id="home-screen" class="screen">
+            <div class="game-header">
+                <button class="back-btn" data-target="world">← Back</button>
+                <h2>🏠 Home</h2>
+            </div>
+            <div id="mom-section">
+                <div class="mom-sprite">
+                    <img src="assets/images/mom.png" alt="Mom" id="mom-image">
+                </div>
+                <div class="dialog-box glass-panel" id="mom-dialog">
+                    <p id="mom-text">Welcome home, dear!</p>
+                </div>
+            </div>
+            <div id="task-list" class="glass-panel">
+                <h3>Today's Tasks</h3>
+                <ul id="mom-tasks"></ul>
+            </div>
+            <div id="give-items-section">
+                <h3>Give Items to Mom</h3>
+                <div id="give-inventory"></div>
+                <button id="end-day-btn" class="action-btn" disabled>End Day</button>
+            </div>
+        </div>
+
+        <!-- Tasks Modal -->
+        <div id="tasks-modal" class="modal">
+            <div class="modal-content glass-panel">
+                <h2>📋 Today's Tasks</h2>
+                <ul id="tasks-list"></ul>
+                <button class="close-modal-btn">Close</button>
+            </div>
+        </div>
+
+        <!-- Game Over Screen -->
+        <div id="gameover-screen" class="screen">
+            <div class="gameover-content">
+                <h1 class="pixel-text">💔 Game Over</h1>
+                <p id="gameover-reason">You ran out of stamina and couldn't afford food!</p>
+                <div class="stats">
+                    <p>Days Survived: <span id="final-days">0</span></p>
+                    <p>Coins Earned: <span id="final-coins">0</span></p>
+                </div>
+                <button id="restart-btn" class="menu-btn primary">🔄 Try Again</button>
+            </div>
+        </div>
+
+        <!-- Victory Screen -->
+        <div id="victory-screen" class="screen">
+            <div class="victory-content">
+                <h1 class="pixel-text">🎉 You Win!</h1>
+                <p>You completed all 3 days and helped Mom!</p>
+                <div class="stats">
+                    <p>Total Coins: <span id="victory-coins">0</span></p>
+                    <p>Tasks Completed: <span id="victory-tasks">0</span></p>
+                </div>
+                <button id="play-again-btn" class="menu-btn primary">🔄 Play Again</button>
+            </div>
+
+            <!-- Controls Hint (shown on world map) -->
+            <div id="controls-hint">
+                <div class="controls-box">
+                    <span>⬆️⬇️⬅️➡️ Move</span>
+                    <span>|</span>
+                    <span>SPACE Enter Zone</span>
+                </div>
+            </div>
+        </div>
+
+        <script src="game.js"></script>
+</body>
+
+</html>

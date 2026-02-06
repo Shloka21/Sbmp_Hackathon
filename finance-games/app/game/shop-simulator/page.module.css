@@ -1,0 +1,551 @@
+.container {
+    min-height: 100vh;
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Header */
+.header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.backBtn {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.backBtn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #ff9800;
+    margin: 0;
+}
+
+/* Day Info */
+.dayInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.dayBadge {
+    background: linear-gradient(90deg, #ff9800, #ff5722);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+.totalProfit {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.positive {
+    color: #4caf50;
+    font-weight: 700;
+}
+
+.negative {
+    color: #f44336;
+    font-weight: 700;
+}
+
+.target {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.85rem;
+}
+
+/* Investment Card */
+.investmentCard {
+    background: rgba(255, 152, 0, 0.1);
+    border: 1px solid rgba(255, 152, 0, 0.3);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.investmentCard h3 {
+    margin: 0 0 1rem 0;
+    color: #ff9800;
+}
+
+.ingredients {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.ingredient {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ingredient.total {
+    border-bottom: none;
+    border-top: 2px solid rgba(255, 152, 0, 0.3);
+    margin-top: 0.5rem;
+    padding-top: 0.75rem;
+    font-weight: 700;
+    color: #ff9800;
+}
+
+.capacityNote {
+    margin: 0.75rem 0 0 0;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Price Section */
+.priceSection {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.priceSection h3 {
+    margin: 0 0 1rem 0;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.priceSlider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.slider {
+    flex: 1;
+    height: 8px;
+    -webkit-appearance: none;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    outline: none;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 24px;
+    height: 24px;
+    background: linear-gradient(135deg, #ffd700, #ff8c00);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(255, 215, 0, 0.4);
+}
+
+.priceDisplay {
+    background: linear-gradient(90deg, #ffd700, #ff8c00);
+    color: #1a1a2e;
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    min-width: 80px;
+    text-align: center;
+}
+
+.demandHint {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.demandLabel {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.8rem;
+}
+
+/* Prediction */
+.prediction {
+    background: rgba(33, 150, 243, 0.1);
+    border: 1px solid rgba(33, 150, 243, 0.3);
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.prediction h4 {
+    margin: 0 0 0.75rem 0;
+    color: #2196f3;
+}
+
+.predictionGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.predProfit {
+    color: #4caf50;
+    font-weight: 600;
+}
+
+/* Open Shop Button */
+.openShopBtn {
+    width: 100%;
+    background: linear-gradient(90deg, #ff9800, #ff5722);
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 12px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.openShopBtn:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 20px rgba(255, 152, 0, 0.4);
+}
+
+/* Event Banner */
+.eventBanner {
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    animation: slideIn 0.5s ease;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.eventBanner.bonus {
+    background: rgba(76, 175, 80, 0.2);
+    border: 1px solid rgba(76, 175, 80, 0.4);
+}
+
+.eventBanner.penalty {
+    background: rgba(255, 152, 0, 0.2);
+    border: 1px solid rgba(255, 152, 0, 0.4);
+}
+
+.eventBanner.waste {
+    background: rgba(244, 67, 54, 0.2);
+    border: 1px solid rgba(244, 67, 54, 0.4);
+}
+
+.eventBanner.none {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.eventIcon {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+/* Results Grid */
+.resultsGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.resultCard {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 1rem;
+    text-align: center;
+}
+
+.resultLabel {
+    display: block;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.85rem;
+    margin-bottom: 0.25rem;
+}
+
+.resultValue {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+/* Profit Display */
+.profitDisplay {
+    border-radius: 16px;
+    padding: 1.5rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.profitDisplay.profit {
+    background: rgba(76, 175, 80, 0.2);
+    border: 2px solid #4caf50;
+}
+
+.profitDisplay.loss {
+    background: rgba(244, 67, 54, 0.2);
+    border: 2px solid #f44336;
+}
+
+.profitLabel {
+    display: block;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.profitAmount {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.profit .profitAmount {
+    color: #4caf50;
+}
+
+.loss .profitAmount {
+    color: #f44336;
+}
+
+/* Continue Button */
+.continueBtn {
+    width: 100%;
+    background: linear-gradient(90deg, #ff9800, #ff5722);
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.continueBtn:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 20px rgba(255, 152, 0, 0.4);
+}
+
+/* Result Screen */
+.resultScreen {
+    text-align: center;
+    padding: 2rem;
+}
+
+.resultEmoji {
+    font-size: 5rem;
+    margin-bottom: 1rem;
+    animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.resultTitle {
+    font-size: 2.5rem;
+    margin: 0 0 0.5rem 0;
+    color: #ffd700;
+}
+
+.resultMessage {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 1.5rem;
+}
+
+.pointsEarned {
+    background: linear-gradient(90deg, #ffd700, #ff8c00);
+    color: #1a1a2e;
+    padding: 0.75rem 1.5rem;
+    border-radius: 20px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* Round Summary */
+.roundSummary {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.roundSummary h3 {
+    margin: 0 0 1rem 0;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.roundRow {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.9rem;
+}
+
+.roundRow:last-child {
+    border-bottom: none;
+}
+
+.profitText {
+    color: #4caf50;
+    font-weight: 600;
+}
+
+.lossText {
+    color: #f44336;
+    font-weight: 600;
+}
+
+/* Lesson Box */
+.lessonBox {
+    background: rgba(255, 215, 0, 0.1);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.lessonBox h3 {
+    margin: 0 0 0.75rem 0;
+    color: #ffd700;
+}
+
+.lessonBox ul {
+    margin: 0;
+    padding-left: 1.25rem;
+}
+
+.lessonBox li {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+/* Result Actions */
+.resultActions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.playAgainBtn,
+.homeBtn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.playAgainBtn {
+    background: linear-gradient(90deg, #ff9800, #ff5722);
+    color: white;
+}
+
+.homeBtn {
+    background: transparent;
+    border: 2px solid #ffd700;
+    color: #ffd700;
+}
+
+.playAgainBtn:hover,
+.homeBtn:hover {
+    transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .dayInfo {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .predictionGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .resultsGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .roundRow {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .resultTitle {
+        font-size: 2rem;
+    }
+
+    .resultActions {
+        flex-direction: column;
+    }
+}

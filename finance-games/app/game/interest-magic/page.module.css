@@ -1,0 +1,569 @@
+.container {
+    min-height: 100vh;
+    padding: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Header */
+.header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.backBtn {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.backBtn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #2196f3;
+    margin: 0;
+}
+
+/* Intro Screen */
+.introScreen {
+    text-align: center;
+    padding: 2rem;
+}
+
+.introEmoji {
+    font-size: 5rem;
+    margin-bottom: 1rem;
+    animation: grow 2s ease-in-out infinite;
+}
+
+@keyframes grow {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+.introScreen h2 {
+    font-size: 2rem;
+    margin: 0 0 0.75rem 0;
+    color: #ffd700;
+}
+
+.introScreen p {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 2rem;
+}
+
+.scenarioCards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.scenarioIntro {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 1.5rem 1rem;
+    text-align: center;
+}
+
+.scenarioIntro span {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.scenarioIntro h3 {
+    margin: 0 0 0.25rem 0;
+    font-size: 1rem;
+}
+
+.scenarioIntro p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.startBtn {
+    background: linear-gradient(90deg, #4caf50, #8bc34a);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.startBtn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(76, 175, 80, 0.4);
+}
+
+/* Year Progress */
+.yearProgress {
+    margin-bottom: 1.5rem;
+}
+
+.yearBadge {
+    background: linear-gradient(90deg, #2196f3, #03a9f4);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    display: inline-block;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+}
+
+.progressBar {
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progressFill {
+    height: 100%;
+    background: linear-gradient(90deg, #2196f3, #4caf50);
+    border-radius: 4px;
+    transition: width 0.5s ease;
+}
+
+/* Tree Growth */
+.treeGrowth {
+    text-align: center;
+    padding: 2rem;
+    background: linear-gradient(180deg, rgba(76, 175, 80, 0.1), transparent);
+    border-radius: 20px;
+    margin-bottom: 1.5rem;
+}
+
+.treeContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tree {
+    font-size: 6rem;
+    animation: sway 3s ease-in-out infinite;
+}
+
+@keyframes sway {
+
+    0%,
+    100% {
+        transform: rotate(-2deg);
+    }
+
+    50% {
+        transform: rotate(2deg);
+    }
+}
+
+.treeLabel {
+    margin-top: 0.5rem;
+    color: #4caf50;
+    font-weight: 600;
+}
+
+/* Comparison Grid */
+.comparisonGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.comparisonCard {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 1.25rem;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.bankCompare {
+    border-color: rgba(76, 175, 80, 0.3);
+    background: rgba(76, 175, 80, 0.1);
+}
+
+.homeCompare {
+    border-color: rgba(255, 193, 7, 0.3);
+    background: rgba(255, 193, 7, 0.1);
+}
+
+.lenderCompare {
+    border-color: rgba(244, 67, 54, 0.3);
+    background: rgba(244, 67, 54, 0.1);
+}
+
+.cardHeader {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.cardHeader span {
+    font-size: 1.5rem;
+}
+
+.cardHeader h3 {
+    margin: 0;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.amountDisplay {
+    margin-bottom: 0.5rem;
+}
+
+.amount {
+    font-size: 1.75rem;
+    font-weight: 700;
+    display: block;
+}
+
+.bankCompare .amount {
+    color: #4caf50;
+}
+
+.homeCompare .amount {
+    color: #ffc107;
+}
+
+.lenderCompare .amount {
+    color: #f44336;
+}
+
+.gain {
+    color: #4caf50;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.neutral {
+    color: #ffc107;
+    font-size: 0.85rem;
+}
+
+.loss {
+    color: #f44336;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.rateInfo {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 0.75rem;
+}
+
+.growthBar {
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.growthFill {
+    height: 100%;
+    background: linear-gradient(90deg, #4caf50, #8bc34a);
+    transition: width 0.5s ease;
+}
+
+.growthFillNeutral {
+    height: 100%;
+    background: #ffc107;
+    transition: width 0.5s ease;
+}
+
+.growthFillLoss {
+    height: 100%;
+    background: #f44336;
+    transition: width 0.5s ease;
+}
+
+/* Next Button */
+.nextBtn {
+    width: 100%;
+    background: linear-gradient(90deg, #2196f3, #03a9f4);
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 1.5rem;
+}
+
+.nextBtn:hover:not(.disabled) {
+    transform: scale(1.02);
+    box-shadow: 0 4px 20px rgba(33, 150, 243, 0.4);
+}
+
+.nextBtn.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Explainer */
+.explainer {
+    background: rgba(33, 150, 243, 0.1);
+    border: 1px solid rgba(33, 150, 243, 0.3);
+    border-radius: 12px;
+    padding: 1.25rem;
+}
+
+.explainer h4 {
+    margin: 0 0 0.5rem 0;
+    color: #2196f3;
+}
+
+.explainer p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+/* Result Screen */
+.resultScreen {
+    text-align: center;
+    padding: 2rem;
+}
+
+.resultEmoji {
+    font-size: 5rem;
+    margin-bottom: 1rem;
+    animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.resultTitle {
+    font-size: 2.5rem;
+    margin: 0 0 0.5rem 0;
+    color: #ffd700;
+}
+
+.resultMessage {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 1.5rem;
+}
+
+.pointsEarned {
+    background: linear-gradient(90deg, #ffd700, #ff8c00);
+    color: #1a1a2e;
+    padding: 0.75rem 1.5rem;
+    border-radius: 20px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* Final Comparison */
+.finalComparison {
+    margin-bottom: 1.5rem;
+}
+
+.finalComparison h3 {
+    margin: 0 0 1rem 0;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.finalResults {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.finalCard {
+    border-radius: 12px;
+    padding: 1.25rem;
+    text-align: center;
+}
+
+.bankCard {
+    background: rgba(76, 175, 80, 0.2);
+    border: 2px solid #4caf50;
+}
+
+.homeCard {
+    background: rgba(255, 193, 7, 0.2);
+    border: 2px solid #ffc107;
+}
+
+.lenderCard {
+    background: rgba(244, 67, 54, 0.2);
+    border: 2px solid #f44336;
+}
+
+.finalEmoji {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.finalAmount {
+    font-size: 1.75rem;
+    font-weight: 700;
+    display: block;
+}
+
+.bankCard .finalAmount {
+    color: #4caf50;
+}
+
+.homeCard .finalAmount {
+    color: #ffc107;
+}
+
+.lenderCard .finalAmount {
+    color: #f44336;
+}
+
+.finalLabel {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Lesson Box */
+.lessonBox {
+    background: rgba(255, 215, 0, 0.1);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.lessonBox h3 {
+    margin: 0 0 0.75rem 0;
+    color: #ffd700;
+}
+
+.lessonBox ul {
+    margin: 0;
+    padding-left: 1.25rem;
+}
+
+.lessonBox li {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+/* Result Actions */
+.resultActions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.playAgainBtn,
+.homeBtn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.playAgainBtn {
+    background: linear-gradient(90deg, #2196f3, #03a9f4);
+    color: white;
+}
+
+.homeBtn {
+    background: transparent;
+    border: 2px solid #ffd700;
+    color: #ffd700;
+}
+
+.playAgainBtn:hover,
+.homeBtn:hover {
+    transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .scenarioCards,
+    .comparisonGrid,
+    .finalResults {
+        grid-template-columns: 1fr;
+    }
+
+    .tree {
+        font-size: 4rem;
+    }
+
+    .resultTitle {
+        font-size: 2rem;
+    }
+
+    .resultActions {
+        flex-direction: column;
+    }
+}
