@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../../config/theme.dart';
 import '../../providers/user_provider.dart';
+import 'tools/cost_calculator_screen.dart';
 
 /// Business Screen - Small business starter kit
 class BusinessScreen extends StatelessWidget {
@@ -90,15 +91,10 @@ class BusinessScreen extends StatelessWidget {
                 child: _ToolCard(
                   icon: '🧮',
                   title: isHindi ? 'लागत\nकैलकुलेटर' : 'Cost\nCalculator',
-                  onTap: () {},
-                ),
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: _ToolCard(
-                  icon: '📊',
-                  title: isHindi ? 'प्रॉफिट\nट्रैकर' : 'Profit\nTracker',
-                  onTap: () {},
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => const CostCalculatorScreen()),
+                  ),
                 ),
               ),
               const SizedBox(width: 12),

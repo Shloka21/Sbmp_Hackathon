@@ -4,7 +4,8 @@ import 'package:http/http.dart' as http;
 
 /// News Service - Financial news from NewsData.io API
 class NewsService {
-  static const String _apiKey = 'pub_63848f14fb72a4f59827b41405b23b9a3';
+  // API Key for NewsData.io
+  static const String _apiKey = 'pub_3ae8f14fb72a4f59827b41405b23b9a3';
   static const String _baseUrl = 'https://newsdata.io/api/1/news';
 
   /// Fetch live financial news from API

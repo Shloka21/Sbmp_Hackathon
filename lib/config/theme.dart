@@ -83,6 +83,12 @@ class AppTypography {
     fontWeight: FontWeight.w500,
     color: AppColors.textPrimary,
   );
+
+  static TextStyle get titleSmall => GoogleFonts.outfit(
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+    color: AppColors.textPrimary,
+  );
   
   static TextStyle get bodyLarge => GoogleFonts.outfit(
     fontSize: 16,
@@ -106,6 +112,12 @@ class AppTypography {
     fontSize: 14,
     fontWeight: FontWeight.w600,
     color: AppColors.textPrimary,
+  );
+
+  static TextStyle get labelSmall => GoogleFonts.outfit(
+    fontSize: 11,
+    fontWeight: FontWeight.w500,
+    color: AppColors.textSecondary,
   );
   
   static TextStyle get buttonText => GoogleFonts.outfit(

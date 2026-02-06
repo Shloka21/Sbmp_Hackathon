@@ -53,6 +53,56 @@ class MoneyProvider extends ChangeNotifier {
     return categories;
   }
 
+  /// Get expenses by emotion tag for this month
+  Map<String, double> get expensesByEmotion {
+    final now = DateTime.now();
+    final monthExpenses = _expenses.where((e) => 
+        !e.isIncome && 
+        e.emotionTag != null &&
+        e.date.month == now.month && 
+        e.date.year == now.year);
+    
+    final emotions = <String, double>{};
+    for (var expense in monthExpenses) {
+      emotions[expense.emotionTag!] = 
+          (emotions[expense.emotionTag!] ?? 0) + expense.amount;
+    }
+    return emotions;
+  }
+
+  /// Get top emotional spending insight
+  String? getEmotionalSpendingInsight(bool isHindi) {
+    final emotionData = expensesByEmotion;
+    if (emotionData.isEmpty) return null;
+    
+    final totalEmotionalSpending = emotionData.values.fold(0.0, (a, b) => a + b);
+    final totalSpending = totalExpensesThisMonth;
+    
+    if (totalSpending == 0) return null;
+    
+    final emotionalPercentage = (totalEmotionalSpending / totalSpending * 100).round();
+    
+    // Find the top emotion
+    final topEmotion = emotionData.entries.reduce((a, b) => a.value > b.value ? a : b);
+    
+    final emotionNames = {
+      'festival': isHindi ? 'त्योहार' : 'Festival',
+      'stress': isHindi ? 'तनाव' : 'Stress',
+      'peer_pressure': isHindi ? 'दोस्तों का दबाव' : 'Peer pressure',
+      'emergency': isHindi ? 'इमरजेंसी' : 'Emergency',
+    };
+    
+    final emotionName = emotionNames[topEmotion.key] ?? topEmotion.key;
+    
+    if (emotionalPercentage > 20) {
+      return isHindi 
+          ? '❤️ $emotionName पर खर्च इस महीने ज्यादा है। अगली बार बेहतर प्लान करें?'
+          : '❤️ $emotionName spending is high this month. Want to plan better next time?';
+    }
+    
+    return null;
+  }
+
   /// Initialize data from storage
   Future<void> initialize() async {
     _isLoading = true;
@@ -114,7 +164,9 @@ class MoneyProvider extends ChangeNotifier {
         targetAmount: goal.targetAmount,
         currentAmount: goal.currentAmount + amount,
         targetDate: goal.targetDate,
+        category: goal.category,
         icon: goal.icon,
+        reminderEnabled: goal.reminderEnabled,
         createdAt: goal.createdAt,
       );
       notifyListeners();

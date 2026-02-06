@@ -6,6 +6,7 @@ class Expense {
   final String? note;
   final DateTime date;
   final bool isIncome;
+  final String? emotionTag; // festival, stress, peer_pressure, emergency, none
 
   Expense({
     required this.id,
@@ -14,6 +15,7 @@ class Expense {
     this.note,
     required this.date,
     this.isIncome = false,
+    this.emotionTag,
   });
 
   Map<String, dynamic> toJson() => {
@@ -23,6 +25,7 @@ class Expense {
     'note': note,
     'date': date.toIso8601String(),
     'isIncome': isIncome,
+    'emotionTag': emotionTag,
   };
 
   factory Expense.fromJson(Map<String, dynamic> json) => Expense(
@@ -32,6 +35,7 @@ class Expense {
     note: json['note'],
     date: DateTime.parse(json['date']),
     isIncome: json['isIncome'] ?? false,
+    emotionTag: json['emotionTag'],
   );
 }
 
@@ -56,14 +60,15 @@ class ExpenseCategory {
   ];
 }
 
-/// Savings goal model
 class SavingsGoal {
   final String id;
   final String title;
   final double targetAmount;
   final double currentAmount;
   final DateTime targetDate;
+  final String category; // education, vehicle, home, emergency, travel, gadget, other
   final String? icon;
+  final bool reminderEnabled;
   final DateTime createdAt;
 
   SavingsGoal({
@@ -72,13 +77,22 @@ class SavingsGoal {
     required this.targetAmount,
     this.currentAmount = 0,
     required this.targetDate,
+    this.category = 'other',
     this.icon,
+    this.reminderEnabled = false,
     required this.createdAt,
   });
 
   double get progress => targetAmount > 0 ? (currentAmount / targetAmount).clamp(0, 1) : 0;
   
   int get daysRemaining => targetDate.difference(DateTime.now()).inDays;
+  
+  // Calculate monthly savings needed to reach goal
+  double get monthlySavingsNeeded {
+    final months = (daysRemaining / 30).ceil();
+    if (months <= 0) return targetAmount - currentAmount;
+    return (targetAmount - currentAmount) / months;
+  }
 
   Map<String, dynamic> toJson() => {
     'id': id,
@@ -86,7 +100,9 @@ class SavingsGoal {
     'targetAmount': targetAmount,
     'currentAmount': currentAmount,
     'targetDate': targetDate.toIso8601String(),
+    'category': category,
     'icon': icon,
+    'reminderEnabled': reminderEnabled,
     'createdAt': createdAt.toIso8601String(),
   };
 
@@ -96,7 +112,9 @@ class SavingsGoal {
     targetAmount: json['targetAmount'].toDouble(),
     currentAmount: json['currentAmount']?.toDouble() ?? 0,
     targetDate: DateTime.parse(json['targetDate']),
+    category: json['category'] ?? 'other',
     icon: json['icon'],
+    reminderEnabled: json['reminderEnabled'] ?? false,
     createdAt: DateTime.parse(json['createdAt']),
   );
 }

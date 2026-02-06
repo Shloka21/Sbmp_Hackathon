@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:video_player/video_player.dart';
 
 import '../../config/theme.dart';
 import '../../data/lesson_data.dart';
@@ -29,11 +30,21 @@ class _LessonDetailScreenState extends State<LessonDetailScreen> {
   Map<String, dynamic>? _lesson;
   List<Map<String, dynamic>> _contentSteps = [];
   List<Map<String, dynamic>> _mcqs = [];
+  
+  VideoPlayerController? _videoController;
+  bool _isVideoInitialized = false;
 
   @override
   void initState() {
     super.initState();
     _loadLesson();
+    _initializeVideo();
+  }
+
+  @override
+  void dispose() {
+    _videoController?.dispose();
+    super.dispose();
   }
 
   void _loadLesson() {
@@ -46,6 +57,22 @@ class _LessonDetailScreenState extends State<LessonDetailScreen> {
       // Load MCQs
       final mcqs = _lesson!['mcqs'] as List? ?? [];
       _mcqs = mcqs.map((m) => m as Map<String, dynamic>).toList();
+    }
+  }
+
+  Future<void> _initializeVideo() async {
+    if (_lesson != null && _lesson!.containsKey('videoPath')) {
+      final videoPath = _lesson!['videoPath'] as String;
+      _videoController = VideoPlayerController.asset(videoPath);
+      
+      try {
+        await _videoController!.initialize();
+        setState(() {
+          _isVideoInitialized = true;
+        });
+      } catch (e) {
+        debugPrint('Error initializing video: $e');
+      }
     }
   }
 
@@ -171,23 +198,81 @@ class _LessonDetailScreenState extends State<LessonDetailScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // Lesson Icon
-        Center(
-          child: Container(
-            width: 100,
-            height: 100,
+        // Video Player (Only on first step if available)
+        if (_currentStep == 0 && _isVideoInitialized && _videoController != null)
+          Container(
+            margin: const EdgeInsets.only(bottom: 24),
             decoration: BoxDecoration(
-              color: AppColors.primary.withOpacity(0.1),
-              borderRadius: BorderRadius.circular(24),
+              borderRadius: BorderRadius.circular(16),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.1),
+                  blurRadius: 10,
+                  offset: const Offset(0, 4),
+                ),
+              ],
             ),
-            child: Center(
-              child: Text(
-                _lesson!['icon'] ?? '📚',
-                style: const TextStyle(fontSize: 48),
+            clipBehavior: Clip.antiAlias,
+            child: AspectRatio(
+              aspectRatio: _videoController!.value.aspectRatio,
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  VideoPlayer(_videoController!),
+                  // Play/Pause Overlay
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        if (_videoController!.value.isPlaying) {
+                          _videoController!.pause();
+                        } else {
+                          _videoController!.play();
+                        }
+                      });
+                    },
+                    child: Container(
+                      color: Colors.transparent, // Hit test target
+                      child: Center(
+                        child: Container(
+                          padding: const EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                            color: Colors.black.withOpacity(0.5),
+                            shape: BoxShape.circle,
+                          ),
+                          child: Icon(
+                            _videoController!.value.isPlaying
+                                ? Icons.pause
+                                : Icons.play_arrow,
+                            color: Colors.white,
+                            size: 48,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          )
+        else
+          // Lesson Icon (Only show if video is NOT shown)
+          Center(
+            child: Container(
+              width: 100,
+              height: 100,
+              decoration: BoxDecoration(
+                color: AppColors.primary.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(24),
+              ),
+              child: Center(
+                child: Text(
+                  _lesson!['icon'] ?? '📚',
+                  style: const TextStyle(fontSize: 48),
+                ),
               ),
             ),
           ),
-        ),
+          
         const SizedBox(height: AppSpacing.xl),
         
         // Step indicator

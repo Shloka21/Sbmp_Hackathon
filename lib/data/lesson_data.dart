@@ -14,11 +14,12 @@ class LessonData {
   // ========== SAVINGS LESSONS ==========
   static const List<Map<String, dynamic>> savingsLessons = [
     {
-      'id': 'savings_1',
-      'title': 'Why Save Money?',
-      'titleHi': 'पैसे क्यों बचाएं?',
+      'id': 'saving_1',
+      'title': 'Why Saving Matters?',
+      'titleHi': 'बचत क्यों जरूरी है?',
       'icon': '💰',
-      'xpReward': 25,
+      'xpReward': 100,
+      'videoPath': 'assets/lessons/savings/savings_intro.mp4',
       'content': [
         {
           'type': 'text',
@@ -145,6 +146,110 @@ class LessonData {
         },
       ],
     },
+    {
+      'id': 'savings_4',
+      'title': 'Emergency Fund Basics',
+      'titleHi': 'इमरजेंसी फंड मूल बातें',
+      'icon': '🆘',
+      'xpReward': 30,
+      'content': [
+        {
+          'type': 'text',
+          'en': '## 🆘 What is Emergency Fund?\n\nAn emergency fund is money saved for unexpected situations:\n- Medical emergencies\n- Job loss\n- Urgent home repairs\n- Family emergencies\n\n**Rule:** Save 3-6 months of expenses.',
+          'hi': '## 🆘 इमरजेंसी फंड क्या है?\n\nइमरजेंसी फंड अचानक की स्थितियों के लिए बचाया पैसा है:\n- मेडिकल इमरजेंसी\n- नौकरी छूटना\n- जरूरी घर की मरम्मत\n- परिवार की इमरजेंसी\n\n**नियम:** 3-6 महीने के खर्च बचाएं।',
+        },
+        {
+          'type': 'text',
+          'en': '## 💰 How Much to Save?\n\n**Calculate your monthly expenses:**\n- Rent/EMI\n- Food & groceries\n- Utilities (electricity, water)\n- Transport\n- Medicine\n\n**Target:** Total × 3 months (minimum)\n\n**Example:** ₹15,000/month × 3 = ₹45,000 emergency fund',
+          'hi': '## 💰 कितना बचाएं?\n\n**अपना मासिक खर्च गिनें:**\n- किराया/EMI\n- खाना और राशन\n- बिजली, पानी\n- आना-जाना\n- दवाई\n\n**लक्ष्य:** कुल × 3 महीने (कम से कम)\n\n**उदाहरण:** ₹15,000/महीने × 3 = ₹45,000 इमरजेंसी फंड',
+        },
+        {
+          'type': 'text',
+          'en': '## 📍 Where to Keep Emergency Fund?\n\n**Best options:**\n1. **Savings Account** - Easy access, some interest\n2. **Sweep FD** - Better interest, auto-breaks when needed\n\n**Don\'t put in:**\n- Stock market (risky)\n- Long-term FD (penalty for early withdrawal)\n- Mutual funds (value can go down)',
+          'hi': '## 📍 इमरजेंसी फंड कहां रखें?\n\n**सबसे अच्छे विकल्प:**\n1. **बचत खाता** - आसान पहुंच, कुछ ब्याज\n2. **स्वीप FD** - बेहतर ब्याज, जरूरत पर ऑटो टूट जाती है\n\n**न रखें:**\n- शेयर मार्केट (जोखिम भरा)\n- लंबी अवधि FD (जल्दी निकालने पर जुर्माना)\n- म्यूचुअल फंड (कीमत गिर सकती है)',
+        },
+      ],
+      'mcqs': [
+        {
+          'question': 'How many months of expenses should emergency fund cover?',
+          'questionHi': 'इमरजेंसी फंड में कितने महीने का खर्च होना चाहिए?',
+          'options': ['1 month', '3-6 months', '12 months', '2 weeks'],
+          'correct': 1,
+        },
+        {
+          'question': 'Where should you NOT keep emergency fund?',
+          'questionHi': 'इमरजेंसी फंड कहां नहीं रखना चाहिए?',
+          'options': ['Savings account', 'Sweep FD', 'Stock market', 'Bank'],
+          'correct': 2,
+        },
+      ],
+    },
+    {
+      'id': 'savings_5',
+      'title': 'Goal-Based Saving',
+      'titleHi': 'लक्ष्य आधारित बचत',
+      'icon': '🎯',
+      'xpReward': 35,
+      'content': [
+        {
+          'type': 'text',
+          'en': '## 🎯 Save with Purpose\n\n**SMART Goals:**\n- **S**pecific: "Buy a phone" not "save money"\n- **M**easurable: ₹15,000 target\n- **A**chievable: Possible with your income\n- **R**elevant: Matters to you\n- **T**ime-bound: By March 2025',
+          'hi': '## 🎯 उद्देश्य के साथ बचाएं\n\n**SMART लक्ष्य:**\n- **S**pecific: "फोन खरीदना" न कि "पैसे बचाना"\n- **M**easurable: ₹15,000 का लक्ष्य\n- **A**chievable: आपकी आमदनी से संभव\n- **R**elevant: आपके लिए मायने रखता है\n- **T**ime-bound: मार्च 2025 तक',
+        },
+        {
+          'type': 'text',
+          'en': '## 📊 Plan Your Goals\n\n**Short-term (< 1 year):**\n- New phone, clothes, festival\n- Keep in savings account\n\n**Medium-term (1-5 years):**\n- Bike, education, wedding\n- Use RD or FD\n\n**Long-term (> 5 years):**\n- House, child education\n- Invest in PPF, mutual funds',
+          'hi': '## 📊 अपने लक्ष्य प्लान करें\n\n**छोटी अवधि (< 1 साल):**\n- नया फोन, कपड़े, त्योहार\n- बचत खाते में रखें\n\n**मध्यम अवधि (1-5 साल):**\n- बाइक, पढ़ाई, शादी\n- RD या FD करें\n\n**लंबी अवधि (> 5 साल):**\n- घर, बच्चे की पढ़ाई\n- PPF, म्यूचुअल फंड में निवेश करें',
+        },
+      ],
+      'mcqs': [
+        {
+          'question': 'What does the T in SMART goals stand for?',
+          'questionHi': 'SMART लक्ष्य में T का क्या मतलब है?',
+          'options': ['Total', 'Time-bound', 'Target', 'Trust'],
+          'correct': 1,
+        },
+        {
+          'question': 'For a goal 3 years away, where should you save?',
+          'questionHi': '3 साल बाद के लक्ष्य के लिए कहां बचाएं?',
+          'options': ['Cash at home', 'Stock market', 'RD or FD', 'Spend now'],
+          'correct': 2,
+        },
+      ],
+    },
+    {
+      'id': 'savings_6',
+      'title': 'Avoiding Debt Traps',
+      'titleHi': 'कर्ज के जाल से बचें',
+      'icon': '⚠️',
+      'xpReward': 40,
+      'content': [
+        {
+          'type': 'text',
+          'en': '## ⚠️ Dangerous Debt Types\n\n**Avoid these:**\n- 🚫 Payday loans (50-100% interest!)\n- 🚫 Informal moneylenders\n- 🚫 Credit card minimum payment only\n- 🚫 Multiple loans at once\n\n**These destroy savings!**',
+          'hi': '## ⚠️ खतरनाक कर्ज के प्रकार\n\n**इनसे बचें:**\n- 🚫 पेडे लोन (50-100% ब्याज!)\n- 🚫 साहूकार/महाजन\n- 🚫 क्रेडिट कार्ड का सिर्फ मिनिमम पेमेंट\n- 🚫 एक साथ कई लोन\n\n**ये बचत खत्म कर देते हैं!**',
+        },
+        {
+          'type': 'text',
+          'en': '## 💪 How to Stay Debt-Free\n\n1. **Build emergency fund first** - No surprise borrowing\n2. **Live below your means** - Spend less than you earn\n3. **Pay full credit card bill** - Every month!\n4. **Say no to lifestyle inflation** - Bigger salary ≠ bigger expenses',
+          'hi': '## 💪 कर्ज से मुक्त कैसे रहें\n\n1. **पहले इमरजेंसी फंड बनाएं** - अचानक उधार नहीं लेना पड़ेगा\n2. **आमदनी से कम खर्च करें** - जितना कमाएं उससे कम खर्चें\n3. **क्रेडिट कार्ड का पूरा बिल भरें** - हर महीने!\n4. **जीवनशैली मुद्रास्फीति से बचें** - बड़ी तनख्वाह = बड़ा खर्च नहीं',
+        },
+      ],
+      'mcqs': [
+        {
+          'question': 'Which has the highest interest rate?',
+          'questionHi': 'किसमें सबसे ज्यादा ब्याज लगता है?',
+          'options': ['Home loan', 'Education loan', 'Payday loan', 'Car loan'],
+          'correct': 2,
+        },
+        {
+          'question': 'What should you build first to avoid debt?',
+          'questionHi': 'कर्ज से बचने के लिए पहले क्या बनाएं?',
+          'options': ['Credit card', 'Emergency fund', 'More loans', 'Gold jewelry'],
+          'correct': 1,
+        },
+      ],
+    },
   ];
 
   // ========== BANKING LESSONS ==========
@@ -155,6 +260,7 @@ class LessonData {
       'titleHi': 'बैंक खाता खोलना',
       'icon': '🏦',
       'xpReward': 25,
+      'videoPath': 'assets/lessons/banking/banking_intro.mp4',
       'content': [
         {
           'type': 'text',
@@ -237,6 +343,105 @@ class LessonData {
         },
       ],
     },
+    {
+      'id': 'banking_3',
+      'title': 'Mobile Banking Safety',
+      'titleHi': 'मोबाइल बैंकिंग सुरक्षा',
+      'icon': '📲',
+      'xpReward': 30,
+      'content': [
+        {
+          'type': 'text',
+          'en': '## 📲 What is Mobile Banking?\n\nManage your bank account from your phone:\n- Check balance\n- Transfer money\n- Pay bills\n- View statements\n\n**Popular apps:** SBI YONO, BOB World, iMobile, Paytm',
+          'hi': '## 📲 मोबाइल बैंकिंग क्या है?\n\nअपने फोन से बैंक अकाउंट संभालें:\n- बैलेंस चेक करें\n- पैसे ट्रांसफर करें\n- बिल भरें\n- स्टेटमेंट देखें\n\n**लोकप्रिय ऐप्स:** SBI YONO, BOB World, iMobile, Paytm',
+        },
+        {
+          'type': 'text',
+          'en': '## 🔐 Safety Rules for Mobile Banking\n\n**DO:**\n- ✅ Use official bank app only\n- ✅ Enable app lock/fingerprint\n- ✅ Log out after use\n- ✅ Keep app updated\n\n**DON\'T:**\n- ❌ Use on public WiFi\n- ❌ Save password in notes\n- ❌ Share screen with anyone\n- ❌ Click unknown links',
+          'hi': '## 🔐 मोबाइल बैंकिंग सुरक्षा नियम\n\n**करें:**\n- ✅ सिर्फ ऑफिशियल बैंक ऐप इस्तेमाल करें\n- ✅ ऐप लॉक/फिंगरप्रिंट लगाएं\n- ✅ इस्तेमाल के बाद लॉग आउट करें\n- ✅ ऐप अपडेट रखें\n\n**न करें:**\n- ❌ पब्लिक WiFi पर न करें\n- ❌ पासवर्ड नोट्स में न सेव करें\n- ❌ किसी को स्क्रीन न दिखाएं\n- ❌ अनजान लिंक क्लिक न करें',
+        },
+      ],
+      'mcqs': [
+        {
+          'question': 'Should you use banking apps on public WiFi?',
+          'questionHi': 'पब्लिक WiFi पर बैंकिंग ऐप इस्तेमाल करना चाहिए?',
+          'options': ['Yes, always', 'No, never', 'Only sometimes', 'Only for checking balance'],
+          'correct': 1,
+        },
+        {
+          'question': 'What should you do after using banking app?',
+          'questionHi': 'बैंकिंग ऐप इस्तेमाल करने के बाद क्या करें?',
+          'options': ['Leave it open', 'Log out', 'Share with friend', 'Uninstall'],
+          'correct': 1,
+        },
+      ],
+    },
+    {
+      'id': 'banking_4',
+      'title': 'Understanding Bank Charges',
+      'titleHi': 'बैंक चार्ज समझें',
+      'icon': '💸',
+      'xpReward': 25,
+      'content': [
+        {
+          'type': 'text',
+          'en': '## 💸 Common Bank Charges\n\n**SMS charges:** ₹15-25/quarter\n**Minimum balance penalty:** ₹100-300\n**ATM charges (after free limit):** ₹20-25\n**Cheque book:** ₹50-100 (first 10 leaves free)\n**Debit card annual fee:** ₹0-200',
+          'hi': '## 💸 आम बैंक चार्ज\n\n**SMS चार्ज:** ₹15-25/तिमाही\n**न्यूनतम बैलेंस जुर्माना:** ₹100-300\n**ATM चार्ज (मुफ्त लिमिट के बाद):** ₹20-25\n**चेक बुक:** ₹50-100 (पहले 10 पन्ने मुफ्त)\n**डेबिट कार्ड वार्षिक फीस:** ₹0-200',
+        },
+        {
+          'type': 'text',
+          'en': '## 🆓 How to Avoid Charges\n\n1. **Maintain minimum balance** - Check your account type\n2. **Use own bank ATM** - 5 free transactions/month\n3. **Opt out SMS** - Use app notifications instead\n4. **Jan Dhan account** - Zero balance, no charges\n\n**Tip:** Check statement every month for hidden charges!',
+          'hi': '## 🆓 चार्ज से कैसे बचें\n\n1. **न्यूनतम बैलेंस रखें** - अपने खाते का प्रकार जांचें\n2. **अपने बैंक का ATM इस्तेमाल करें** - 5 मुफ्त लेनदेन/महीना\n3. **SMS बंद करें** - ऐप नोटिफिकेशन इस्तेमाल करें\n4. **जन धन खाता** - जीरो बैलेंस, कोई चार्ज नहीं\n\n**टिप:** हर महीने स्टेटमेंट देखें छुपे चार्ज के लिए!',
+        },
+      ],
+      'mcqs': [
+        {
+          'question': 'How many free ATM transactions at own bank per month?',
+          'questionHi': 'अपने बैंक के ATM पर कितने मुफ्त लेनदेन हर महीने?',
+          'options': ['2', '3', '5', '10'],
+          'correct': 2,
+        },
+        {
+          'question': 'Which account type has zero minimum balance?',
+          'questionHi': 'किस खाते में जीरो मिनिमम बैलेंस है?',
+          'options': ['Salary account only', 'Jan Dhan account', 'FD account', 'Current account'],
+          'correct': 1,
+        },
+      ],
+    },
+    {
+      'id': 'banking_5',
+      'title': 'Reading Bank Statement',
+      'titleHi': 'बैंक स्टेटमेंट पढ़ना',
+      'icon': '📋',
+      'xpReward': 30,
+      'content': [
+        {
+          'type': 'text',
+          'en': '## 📋 Understanding Your Statement\n\n**Key columns:**\n- **Date:** When transaction happened\n- **Description:** Who/what it was\n- **Debit:** Money going out (-)\n- **Credit:** Money coming in (+)\n- **Balance:** Total after transaction',
+          'hi': '## 📋 अपना स्टेटमेंट समझें\n\n**मुख्य कॉलम:**\n- **तारीख:** लेनदेन कब हुआ\n- **विवरण:** किसके साथ/क्या था\n- **डेबिट:** पैसे बाहर गए (-)\n- **क्रेडिट:** पैसे अंदर आए (+)\n- **बैलेंस:** लेनदेन के बाद कुल राशि',
+        },
+        {
+          'type': 'text',
+          'en': '## 🔍 What to Check Monthly\n\n1. **Unknown transactions** - Report immediately\n2. **Bank charges** - Understand why charged\n3. **EMI debits** - Verify amount & date\n4. **Salary credits** - Check if received on time\n\n**Pro tip:** Download statement as PDF from app every month!',
+          'hi': '## 🔍 हर महीने क्या जांचें\n\n1. **अनजान लेनदेन** - तुरंत रिपोर्ट करें\n2. **बैंक चार्ज** - समझें क्यों लगे\n3. **EMI डेबिट** - राशि और तारीख जांचें\n4. **सैलरी क्रेडिट** - समय पर मिली या नहीं\n\n**टिप:** हर महीने ऐप से PDF स्टेटमेंट डाउनलोड करें!',
+        },
+      ],
+      'mcqs': [
+        {
+          'question': 'What does "Debit" mean in bank statement?',
+          'questionHi': 'बैंक स्टेटमेंट में "डेबिट" का मतलब क्या है?',
+          'options': ['Money coming in', 'Money going out', 'Interest earned', 'Account opened'],
+          'correct': 1,
+        },
+        {
+          'question': 'What should you do if you see unknown transaction?',
+          'questionHi': 'अगर अनजान लेनदेन दिखे तो क्या करें?',
+          'options': ['Ignore it', 'Wait a week', 'Report to bank immediately', 'Delete statement'],
+          'correct': 2,
+        },
+      ],
+    },
   ];
 
   // ========== CREDIT LESSONS ==========
@@ -295,6 +500,7 @@ class LessonData {
       'titleHi': 'बचत vs निवेश',
       'icon': '📈',
       'xpReward': 30,
+      'videoPath': 'assets/lessons/investment/investment_intro.mp4',
       'content': [
         {
           'type': 'text',

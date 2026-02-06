@@ -9,6 +9,9 @@ import '../../models/expense.dart';
 import '../../providers/user_provider.dart';
 import '../../providers/money_provider.dart';
 import '../../widgets/common/widgets.dart';
+import 'budget_planner_screen.dart';
+import 'scan_bill_screen.dart';
+import 'create_goal_screen.dart';
 
 /// Money Management Screen - Track expenses, income, and savings goals
 class MoneyScreen extends StatefulWidget {
@@ -165,6 +168,79 @@ class _ExpensesTab extends StatelessWidget {
           ),
         ),
         
+        const SizedBox(height: 16),
+        
+        // Quick actions
+        Row(
+          children: [
+            Expanded(
+              child: GestureDetector(
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const ScanBillScreen()),
+                ),
+                child: Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.05),
+                        blurRadius: 8,
+                        offset: const Offset(0, 2),
+                      ),
+                    ],
+                  ),
+                  child: Row(
+                    children: [
+                      const Text('📷', style: TextStyle(fontSize: 24)),
+                      const SizedBox(width: 12),
+                      Text(
+                        isHindi ? 'बिल स्कैन' : 'Scan Bill',
+                        style: AppTypography.titleSmall,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: GestureDetector(
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const BudgetPlannerScreen()),
+                ),
+                child: Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.05),
+                        blurRadius: 8,
+                        offset: const Offset(0, 2),
+                      ),
+                    ],
+                  ),
+                  child: Row(
+                    children: [
+                      const Text('📊', style: TextStyle(fontSize: 24)),
+                      const SizedBox(width: 12),
+                      Text(
+                        isHindi ? 'बजट प्लान' : 'Budget Plan',
+                        style: AppTypography.titleSmall,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+        
         const SizedBox(height: AppSpacing.xl),
         
         // Recent transactions
@@ -295,6 +371,64 @@ class _AnalyticsTab extends StatelessWidget {
         
         const SizedBox(height: AppSpacing.xl),
         
+        // Emotional Spending Insight
+        Builder(
+          builder: (context) {
+            final insight = moneyProvider.getEmotionalSpendingInsight(isHindi);
+            if (insight == null) return const SizedBox.shrink();
+            
+            return Container(
+              margin: const EdgeInsets.only(bottom: AppSpacing.lg),
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [Colors.pink.shade50, Colors.purple.shade50],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(color: Colors.pink.shade200),
+              ),
+              child: Row(
+                children: [
+                  Container(
+                    width: 48,
+                    height: 48,
+                    decoration: BoxDecoration(
+                      color: Colors.pink.shade100,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: const Center(
+                      child: Text('🧸', style: TextStyle(fontSize: 24)),
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          isHindi ? 'साथी की सलाह' : 'Sathi says',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.pink.shade700,
+                            fontSize: 12,
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          insight,
+                          style: AppTypography.bodyMedium,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
+        
         // Category breakdown
         Text(
           isHindi ? 'श्रेणी के अनुसार' : 'By Category',
@@ -372,142 +506,333 @@ class _GoalsTab extends StatelessWidget {
 
   const _GoalsTab({required this.isHindi});
 
-  @override
-  Widget build(BuildContext context) {
-    final moneyProvider = context.watch<MoneyProvider>();
-
-    return ListView(
-      padding: const EdgeInsets.all(AppSpacing.lg),
-      children: [
-        Text(
-          isHindi ? '🎯 बचत लक्ष्य' : '🎯 Savings Goals',
-          style: AppTypography.headlineSmall,
-        ),
-        const SizedBox(height: 16),
-        
-        if (moneyProvider.goals.isEmpty)
-          GestureDetector(
-            onTap: () => _showAddGoalDialog(context, isHindi),
-            child: Container(
-              padding: const EdgeInsets.all(32),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(AppRadius.lg),
-                border: Border.all(
-                  color: AppColors.primary.withOpacity(0.3),
-                  width: 2,
-                  style: BorderStyle.solid,
-                ),
-              ),
-              child: Column(
-                children: [
-                  const Text('🎯', style: TextStyle(fontSize: 64)),
-                  const SizedBox(height: 16),
-                  Text(
-                    isHindi 
-                        ? 'अपना पहला लक्ष्य बनाएं!' 
-                        : 'Create your first goal!',
-                    style: AppTypography.titleLarge,
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    isHindi 
-                        ? 'टैप करें' 
-                        : 'Tap to add',
-                    style: AppTypography.bodyMedium.copyWith(
-                      color: AppColors.primary,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          )
-        else
-          ...moneyProvider.goals.map((goal) {
-            return Container(
-              margin: const EdgeInsets.only(bottom: 16),
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(AppRadius.lg),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Text(goal.icon ?? '🎯', style: const TextStyle(fontSize: 32)),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(goal.title, style: AppTypography.titleLarge),
-                            Text(
-                              '${goal.daysRemaining} ${isHindi ? 'दिन बाकी' : 'days left'}',
-                              style: AppTypography.bodySmall,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 16),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(8),
-                    child: LinearProgressIndicator(
-                      value: goal.progress,
-                      backgroundColor: AppColors.background,
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                        AppColors.primary,
-                      ),
-                      minHeight: 12,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        '₹${goal.currentAmount.toInt()}',
-                        style: AppTypography.titleMedium.copyWith(
-                          color: AppColors.primary,
-                        ),
-                      ),
-                      Text(
-                        '₹${goal.targetAmount.toInt()}',
-                        style: AppTypography.titleMedium,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            );
-          }),
-      ],
-    );
-  }
-
-  void _showAddGoalDialog(BuildContext context, bool isHindi) {
-    // Simple goal dialog
+  void _showAddMoneyDialog(BuildContext context, SavingsGoal goal) {
+    final controller = TextEditingController();
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text(isHindi ? 'नया लक्ष्य' : 'New Goal'),
-        content: Text(isHindi 
-            ? 'Sathi AI से बात करें और अपना लक्ष्य बताएं!' 
-            : 'Talk to Sathi AI to set your goal!'),
+        title: Text(isHindi ? 'पैसे जोड़ें' : 'Add Money'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              '${goal.title}',
+              style: AppTypography.titleMedium.copyWith(color: AppColors.primary),
+            ),
+            const SizedBox(height: 16),
+            TextField(
+              controller: controller,
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(
+                prefixText: '₹ ',
+                hintText: isHindi ? 'राशि डालें' : 'Enter amount',
+              ),
+            ),
+          ],
+        ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: Text(isHindi ? 'ठीक है' : 'OK'),
+            child: Text(isHindi ? 'रद्द करें' : 'Cancel'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              final amount = double.tryParse(controller.text);
+              if (amount != null && amount > 0) {
+                context.read<MoneyProvider>().updateGoalProgress(goal.id, amount);
+                Navigator.pop(context);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(isHindi ? 'पैसे जोड़े गए!' : 'Money added to goal!'),
+                    backgroundColor: AppColors.success,
+                  ),
+                );
+              }
+            },
+            child: Text(isHindi ? 'जोड़ें' : 'Add'),
           ),
         ],
       ),
     );
   }
-}
 
+  @override
+  Widget build(BuildContext context) {
+    final moneyProvider = context.watch<MoneyProvider>();
+    final activeGoals = moneyProvider.goals.where((g) => g.progress < 1).toList();
+    final completedGoals = moneyProvider.goals.where((g) => g.progress >= 1).toList();
+
+    return ListView(
+      padding: const EdgeInsets.all(AppSpacing.lg),
+      children: [
+        // Header Row with Create Button
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+             Text(
+              isHindi ? '🎯 बचत लक्ष्य' : '🎯 Savings Goals',
+              style: AppTypography.headlineSmall,
+            ),
+            ElevatedButton.icon(
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const CreateGoalScreen()),
+              ),
+              icon: const Icon(Icons.add, size: 18),
+              label: Text(isHindi ? 'नया लक्ष्य' : 'New Goal'),
+              style: ElevatedButton.styleFrom(
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 16),
+        
+        if (moneyProvider.goals.isEmpty)
+          _buildEmptyState(context),
+
+        if (activeGoals.isNotEmpty) ...[
+          const SizedBox(height: 8),
+          Text(
+            isHindi ? 'सक्रिय लक्ष्य' : 'Active Goals',
+            style: AppTypography.labelLarge.copyWith(color: AppColors.textSecondary),
+          ),
+          const SizedBox(height: 12),
+          ...activeGoals.map((goal) => _buildGoalCard(context, goal, false)),
+        ],
+
+        if (completedGoals.isNotEmpty) ...[
+          const SizedBox(height: 24),
+          Text(
+            isHindi ? 'पूरे हुए लक्ष्य 🎉' : 'Completed Goals 🎉',
+            style: AppTypography.labelLarge.copyWith(color: AppColors.success),
+          ),
+          const SizedBox(height: 12),
+          ...completedGoals.map((goal) => _buildGoalCard(context, goal, true)),
+        ],
+
+        const SizedBox(height: 80), // Bottom padding
+      ],
+    );
+  }
+
+  Widget _buildEmptyState(BuildContext context) {
+    return GestureDetector(
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(builder: (_) => const CreateGoalScreen()),
+      ),
+      child: Container(
+        padding: const EdgeInsets.all(32),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(AppRadius.lg),
+          border: Border.all(
+            color: AppColors.primary.withOpacity(0.3),
+            width: 2,
+            style: BorderStyle.solid,
+          ),
+        ),
+        child: Column(
+          children: [
+            const Text('🎯', style: TextStyle(fontSize: 64)),
+            const SizedBox(height: 16),
+            Text(
+              isHindi 
+                  ? 'अपना पहला लक्ष्य बनाएं!' 
+                  : 'Create your first goal!',
+              style: AppTypography.titleLarge,
+            ),
+            const SizedBox(height: 8),
+            Text(
+              isHindi 
+                  ? 'शुरू करने के लिए टैप करें' 
+                  : 'Tap to start saving',
+              style: AppTypography.bodyMedium.copyWith(color: AppColors.primary),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildGoalCard(BuildContext context, SavingsGoal goal, bool isCompleted) {
+    final progress = goal.progress;
+    final percentage = (progress * 100).toInt();
+    final remaining = goal.targetAmount - goal.currentAmount;
+
+    return Container(
+      margin: const EdgeInsets.only(bottom: 16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
+        border: isCompleted ? Border.all(color: AppColors.success, width: 1) : null,
+      ),
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Icon
+                Container(
+                  width: 50,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    color: isCompleted ? AppColors.success.withOpacity(0.1) : AppColors.primary.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Center(
+                    child: Text(goal.icon ?? '🎯', style: const TextStyle(fontSize: 24)),
+                  ),
+                ),
+                const SizedBox(width: 16),
+                
+                // Title and progress text
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(goal.title, style: AppTypography.titleMedium),
+                      const SizedBox(height: 4),
+                      Text(
+                        isCompleted 
+                            ? (isHindi ? 'पूरा हुआ!' : 'Completed!') 
+                            : '${goal.daysRemaining} ${isHindi ? 'दिन बाकी' : 'days left'}',
+                        style: AppTypography.bodySmall.copyWith(
+                          color: isCompleted ? AppColors.success : AppColors.textSecondary,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+                // Radial Progress
+                SizedBox(
+                  height: 50,
+                  width: 50,
+                  child: Stack(
+                    children: [
+                      Center(
+                        child: CircularProgressIndicator(
+                          value: progress,
+                          backgroundColor: Colors.grey.shade100,
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                            isCompleted ? AppColors.success : AppColors.primary,
+                          ),
+                          strokeWidth: 5,
+                        ),
+                      ),
+                      Center(
+                        child: Text(
+                          '$percentage%',
+                          style: const TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          
+          // Stats Row
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            decoration: BoxDecoration(
+              color: AppColors.backgroundLight,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                _GoalStat(
+                  label: isHindi ? 'जमा हुआ' : 'Saved',
+                  value: '₹${goal.currentAmount.toInt()}',
+                  color: AppColors.primary,
+                ),
+                if (!isCompleted)
+                  _GoalStat(
+                    label: isHindi ? 'लक्ष्य' : 'Target',
+                    value: '₹${goal.targetAmount.toInt()}',
+                    color: AppColors.textPrimary,
+                  ),
+                if (!isCompleted)
+                  _GoalStat(
+                    label: isHindi ? 'मासिक' : 'Monthly',
+                    value: '₹${goal.monthlySavingsNeeded.toInt()}',
+                    color: AppColors.warning,
+                  ),
+              ],
+            ),
+          ),
+
+          // Add Money Button (Only for active goals)
+          if (!isCompleted)
+            Padding(
+              padding: const EdgeInsets.all(12),
+              child: SizedBox(
+                width: double.infinity,
+                child: OutlinedButton.icon(
+                  onPressed: () => _showAddMoneyDialog(context, goal),
+                  icon: const Icon(Icons.add_circle_outline),
+                  label: Text(isHindi ? 'पैसे जोड़ें' : 'Add Money to Goal'),
+                  style: OutlinedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                  ),
+                ),
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+}
+class _GoalStat extends StatelessWidget {
+  final String label;
+  final String value;
+  final Color color;
+
+  const _GoalStat({
+    required this.label,
+    required this.value,
+    required this.color,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text(
+          label,
+          style: AppTypography.labelSmall.copyWith(color: AppColors.textSecondary),
+          textAlign: TextAlign.center,
+        ),
+        const SizedBox(height: 2),
+        Text(
+          value,
+          style: AppTypography.titleSmall.copyWith(
+            fontWeight: FontWeight.bold,
+            color: color,
+          ),
+          textAlign: TextAlign.center,
+        ),
+      ],
+    );
+  }
+}
 class _SummaryCard extends StatelessWidget {
   final String title;
   final String amount;
@@ -637,8 +962,16 @@ class _AddExpenseSheet extends StatefulWidget {
 class _AddExpenseSheetState extends State<_AddExpenseSheet> {
   bool _isIncome = false;
   String? _selectedCategory;
+  String? _selectedEmotion;
   final _amountController = TextEditingController();
   final _noteController = TextEditingController();
+
+  static const List<Map<String, dynamic>> emotionTags = [
+    {'id': 'festival', 'icon': '🎉', 'name': 'Festival', 'nameHi': 'त्योहार'},
+    {'id': 'stress', 'icon': '😰', 'name': 'Stress', 'nameHi': 'तनाव'},
+    {'id': 'peer_pressure', 'icon': '👥', 'name': 'Peer Pressure', 'nameHi': 'दोस्तों का दबाव'},
+    {'id': 'emergency', 'icon': '🚨', 'name': 'Emergency', 'nameHi': 'इमरजेंसी'},
+  ];
 
   @override
   void dispose() {
@@ -800,6 +1133,48 @@ class _AddExpenseSheetState extends State<_AddExpenseSheet> {
             
             const SizedBox(height: 24),
             
+            // Emotion Tag (only for expenses)
+            if (!_isIncome) ...[
+              Text(
+                widget.isHindi ? '❤️ खर्च का कारण (वैकल्पिक)' : '❤️ Spending Context (optional)',
+                style: AppTypography.labelLarge,
+              ),
+              const SizedBox(height: 8),
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: emotionTags.map((tag) {
+                  final isSelected = _selectedEmotion == tag['id'];
+                  return GestureDetector(
+                    onTap: () => setState(() => _selectedEmotion = isSelected ? null : tag['id']),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                      decoration: BoxDecoration(
+                        color: isSelected ? Colors.pink.shade100 : AppColors.background,
+                        borderRadius: BorderRadius.circular(20),
+                        border: isSelected ? Border.all(color: Colors.pink, width: 2) : null,
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(tag['icon'], style: const TextStyle(fontSize: 16)),
+                          const SizedBox(width: 6),
+                          Text(
+                            widget.isHindi ? tag['nameHi'] : tag['name'],
+                            style: TextStyle(
+                              color: isSelected ? Colors.pink.shade700 : AppColors.textPrimary,
+                              fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                }).toList(),
+              ),
+              const SizedBox(height: 24),
+            ],
+            
             // Note
             Text(
               widget.isHindi ? 'नोट (वैकल्पिक)' : 'Note (optional)',
@@ -843,6 +1218,7 @@ class _AddExpenseSheetState extends State<_AddExpenseSheet> {
       note: _noteController.text.isEmpty ? null : _noteController.text,
       date: DateTime.now(),
       isIncome: _isIncome,
+      emotionTag: _isIncome ? null : _selectedEmotion,
     );
 
     context.read<MoneyProvider>().addExpense(expense);

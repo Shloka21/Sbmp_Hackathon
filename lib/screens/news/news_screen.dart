@@ -13,9 +13,6 @@ class NewsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final userProvider = context.watch<UserProvider>();
     final isHindi = userProvider.language == 'hi';
-    final news = NewsService.getNews(userProvider.language);
-    final importantNews = news.where((n) => n.isImportant).toList();
-    final otherNews = news.where((n) => !n.isImportant).toList();
 
     return Scaffold(
       backgroundColor: AppColors.background,
@@ -24,54 +21,87 @@ class NewsScreen extends StatelessWidget {
         backgroundColor: AppColors.primary,
         foregroundColor: Colors.white,
         elevation: 0,
-      ),
-      body: ListView(
-        padding: const EdgeInsets.all(16),
-        children: [
-          // Important news section
-          if (importantNews.isNotEmpty) ...[
-            Text(
-              isHindi ? '⚡ महत्वपूर्ण खबरें' : '⚡ Important News',
-              style: AppTypography.headlineSmall,
-            ),
-            const SizedBox(height: 12),
-            ...importantNews.map((item) => _buildImportantNewsCard(item, isHindi)),
-            const SizedBox(height: 24),
-          ],
-
-          // Latest news section
-          Text(
-            isHindi ? '📰 ताज़ा खबरें' : '📰 Latest News',
-            style: AppTypography.headlineSmall,
-          ),
-          const SizedBox(height: 12),
-          ...otherNews.map((item) => _buildNewsCard(item, isHindi)),
-          
-          const SizedBox(height: 24),
-          
-          // Disclaimer
-          Container(
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: Colors.grey.shade100,
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Row(
-              children: [
-                Icon(Icons.info_outline, color: AppColors.textLight, size: 20),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: Text(
-                    isHindi 
-                        ? 'यह शैक्षिक उद्देश्यों के लिए है। निवेश से पहले विशेषज्ञ से सलाह लें।'
-                        : 'This is for educational purposes. Consult an expert before investing.',
-                    style: AppTypography.bodySmall,
-                  ),
-                ),
-              ],
-            ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.refresh),
+            onPressed: () {
+               // Trigger rebuild to refresh news
+               (context as Element).markNeedsBuild();
+            },
           ),
         ],
+      ),
+      body: FutureBuilder<List<NewsItem>>(
+        future: NewsService.fetchNews(userProvider.language),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          final news = snapshot.data ?? [];
+          final importantNews = news.where((n) => n.isImportant).toList();
+          final otherNews = news.where((n) => !n.isImportant).toList();
+
+          return ListView(
+            padding: const EdgeInsets.all(16),
+            children: [
+              // Important news section
+              if (importantNews.isNotEmpty) ...[
+                Text(
+                  isHindi ? '⚡ महत्वपूर्ण खबरें' : '⚡ Important News',
+                  style: AppTypography.headlineSmall,
+                ),
+                const SizedBox(height: 12),
+                ...importantNews.map((item) => _buildImportantNewsCard(item, isHindi)),
+                const SizedBox(height: 24),
+              ],
+
+              // Latest news section
+              Text(
+                isHindi ? '📰 ताज़ा खबरें' : '📰 Latest News',
+                style: AppTypography.headlineSmall,
+              ),
+              const SizedBox(height: 12),
+              if (otherNews.isEmpty && importantNews.isEmpty)
+                Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(32.0),
+                    child: Text(
+                      isHindi ? 'कोई समाचार नहीं' : 'No news found',
+                      style: AppTypography.bodyMedium,
+                    ),
+                  ),
+                )
+              else
+                ...otherNews.map((item) => _buildNewsCard(item, isHindi)),
+              
+              const SizedBox(height: 24),
+              
+              // Disclaimer
+              Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade100,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Row(
+                  children: [
+                    Icon(Icons.info_outline, color: AppColors.textLight, size: 20),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Text(
+                        isHindi 
+                            ? 'यह शैक्षिक उद्देश्यों के लिए है। निवेश से पहले विशेषज्ञ से सलाह लें।'
+                            : 'This is for educational purposes. Consult an expert before investing.',
+                        style: AppTypography.bodySmall,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          );
+        },
       ),
     );
   }
