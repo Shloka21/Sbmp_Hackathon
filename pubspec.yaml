@@ -1,0 +1,80 @@
+name: fintech_sbmp
+description: "Financial Literacy & Empowerment Platform for Rural Users - Sathi AI"
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.10.7
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  
+  # Icons & UI
+  cupertino_icons: ^1.0.8
+  flutter_svg: ^2.0.9
+  lottie: ^3.1.0
+  fl_chart: ^1.1.1
+  google_fonts: ^6.1.0
+  
+  # State Management
+  provider: ^6.1.1
+  
+  # Local Storage
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  shared_preferences: ^2.2.2
+  
+  # AI Integration
+  google_generative_ai: ^0.4.3
+  
+  # Voice Features
+  speech_to_text: ^7.0.0
+  flutter_tts: ^4.0.2
+  
+  # Utilities
+  connectivity_plus: any
+  intl: any
+  uuid: ^4.3.3
+  permission_handler: ^11.1.0
+  http: ^1.1.0
+  
+  # Local Auth (biometric/PIN)
+  local_auth: ^2.1.8
+  
+  # Local Notifications (for OTP)
+  flutter_local_notifications: ^18.0.1
+  
+  # Navigation
+  go_router: ^13.2.0
+  sms_autofill: ^2.4.1
+  local_auth_android: ^1.0.56
+  
+  # Video & Audio Playback
+  video_player: ^2.8.2
+  just_audio: ^0.9.36
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  hive_generator: ^2.0.1
+  build_runner: ^2.4.8
+
+flutter:
+  uses-material-design: true
+  
+  assets:
+    - assets/images/
+    - assets/icons/
+    - assets/lessons/
+    - assets/lessons/savings/
+    - assets/lessons/banking/
+    - assets/lessons/credit/
+    - assets/lessons/investment/
+    - assets/lessons/business/
+    - assets/lessons/digital/
+  
+
