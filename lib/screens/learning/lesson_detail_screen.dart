@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
@@ -33,6 +34,8 @@ class _LessonDetailScreenState extends State<LessonDetailScreen> {
   
   VideoPlayerController? _videoController;
   bool _isVideoInitialized = false;
+  bool _showControls = true;
+  Timer? _hideTimer;
 
   @override
   void initState() {
@@ -43,6 +46,7 @@ class _LessonDetailScreenState extends State<LessonDetailScreen> {
 
   @override
   void dispose() {
+    _hideTimer?.cancel();
     _videoController?.dispose();
     super.dispose();
   }
@@ -58,6 +62,17 @@ class _LessonDetailScreenState extends State<LessonDetailScreen> {
       final mcqs = _lesson!['mcqs'] as List? ?? [];
       _mcqs = mcqs.map((m) => m as Map<String, dynamic>).toList();
     }
+  }
+
+  void _startHideTimer() {
+    _hideTimer?.cancel();
+    _hideTimer = Timer(const Duration(seconds: 3), () {
+      if (mounted && _videoController!.value.isPlaying) {
+        setState(() {
+          _showControls = false;
+        });
+      }
+    });
   }
 
   Future<void> _initializeVideo() async {
@@ -219,32 +234,62 @@ class _LessonDetailScreenState extends State<LessonDetailScreen> {
                 alignment: Alignment.center,
                 children: [
                   VideoPlayer(_videoController!),
-                  // Play/Pause Overlay
+                  
+                  // Touch overlay to toggle controls
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                        if (_videoController!.value.isPlaying) {
-                          _videoController!.pause();
-                        } else {
-                          _videoController!.play();
+                        _showControls = !_showControls;
+                        if (_showControls && _videoController!.value.isPlaying) {
+                          _startHideTimer();
                         }
                       });
                     },
                     child: Container(
-                      color: Colors.transparent, // Hit test target
-                      child: Center(
-                        child: Container(
-                          padding: const EdgeInsets.all(12),
-                          decoration: BoxDecoration(
-                            color: Colors.black.withOpacity(0.5),
-                            shape: BoxShape.circle,
-                          ),
-                          child: Icon(
-                            _videoController!.value.isPlaying
-                                ? Icons.pause
-                                : Icons.play_arrow,
-                            color: Colors.white,
-                            size: 48,
+                      color: Colors.transparent,
+                      width: double.infinity,
+                      height: double.infinity,
+                    ),
+                  ),
+
+                  // Controls Overlay
+                  IgnorePointer(
+                    ignoring: !_showControls,
+                    child: AnimatedOpacity(
+                      duration: const Duration(milliseconds: 300),
+                      opacity: _showControls ? 1.0 : 0.0,
+                      child: Container(
+                        color: Colors.black.withOpacity(0.4),
+                        child: Center(
+                          child: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                if (_videoController!.value.isPlaying) {
+                                  _videoController!.pause();
+                                  _hideTimer?.cancel(); // Keep controls visible when paused
+                                  _showControls = true;
+                                } else {
+                                  _videoController!.play();
+                                  _startHideTimer(); // Auto hide when playing
+                                  _showControls = true;
+                                }
+                              });
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.all(16),
+                              decoration: BoxDecoration(
+                                color: Colors.white.withOpacity(0.2),
+                                shape: BoxShape.circle,
+                                border: Border.all(color: Colors.white, width: 2),
+                              ),
+                              child: Icon(
+                                _videoController!.value.isPlaying
+                                    ? Icons.pause
+                                    : Icons.play_arrow,
+                                color: Colors.white,
+                                size: 48,
+                              ),
+                            ),
                           ),
                         ),
                       ),
