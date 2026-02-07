@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../../config/theme.dart';
 import '../../providers/user_provider.dart';
 import 'tools/cost_calculator_screen.dart';
+import 'startup/business_startup.dart';
 
 /// Business Screen - Small business starter kit
 class BusinessScreen extends StatelessWidget {
@@ -54,6 +56,94 @@ class BusinessScreen extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
               ],
+            ),
+          ),
+          
+          const SizedBox(height: AppSpacing.xl),
+          
+          // Start Your Business Card - Main CTA
+          GestureDetector(
+            onTap: () async {
+              await HapticFeedback.mediumImpact();
+              if (!context.mounted) return;
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const BusinessSelectionScreen(),
+                ),
+              );
+            },
+            child: Container(
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    AppColors.primary,
+                    AppColors.primaryDark,
+                  ],
+                ),
+                borderRadius: BorderRadius.circular(AppRadius.lg),
+                boxShadow: [
+                  BoxShadow(
+                    color: AppColors.primary.withOpacity(0.3),
+                    blurRadius: 12,
+                    offset: const Offset(0, 4),
+                  ),
+                ],
+              ),
+              child: Row(
+                children: [
+                  Container(
+                    width: 60,
+                    height: 60,
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.2),
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    child: const Center(
+                      child: Text('🚀', style: TextStyle(fontSize: 32)),
+                    ),
+                  ),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          isHindi ? 'अपना व्यापार शुरू करें!' : 'Start Your Business!',
+                          style: AppTypography.titleLarge.copyWith(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          isHindi 
+                              ? 'स्टेप-बाई-स्टेप गाइड के साथ' 
+                              : 'With step-by-step guidance',
+                          style: AppTypography.bodyMedium.copyWith(
+                            color: Colors.white70,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    width: 40,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Icon(
+                      Icons.arrow_forward,
+                      color: AppColors.primary,
+                      size: 20,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
           
@@ -171,7 +261,7 @@ class BusinessScreen extends StatelessWidget {
         'icon': '🧵',
         'title': isHindi ? 'सिलाई/टेलरिंग' : 'Tailoring Business',
         'investment': isHindi ? '₹10,000 - ₹30,000' : '₹10,000 - ₹30,000',
-        'profit': isHindi ? '₹6,000-15,000/महीना' : '₹6,000-15,000/month',
+        'profit': isHindi ? '₹6,000-15,000/महीना' : '₹60-150/day',
         'description': isHindi 
             ? 'कपड़े सिलने का व्यापार घर से शुरू करें' 
             : 'Start a tailoring business from home',
@@ -198,7 +288,7 @@ class BusinessScreen extends StatelessWidget {
         'icon': '🐄',
         'title': isHindi ? 'दूध का व्यापार' : 'Dairy/Milk Business',
         'investment': isHindi ? '₹20,000 - ₹50,000' : '₹20,000 - ₹50,000',
-        'profit': isHindi ? '₹8,000-20,000/महीना' : '₹8,000-20,000/month',
+        'profit': isHindi ? '₹8,000-20,000/महीना' : '₹80-200/day',
         'description': isHindi 
             ? 'दूध और दूध से बने प्रोडक्ट्स बेचें' 
             : 'Sell milk and dairy products',
