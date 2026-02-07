@@ -1,0 +1,263 @@
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 1rem;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.modal {
+    background: linear-gradient(145deg, #1e1e2e, #2a2a40);
+    border-radius: 24px;
+    padding: 2.5rem;
+    max-width: 450px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    animation: scaleIn 0.5s ease;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.confetti {
+    display: flex;
+    justify-content: space-around;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.confetti span {
+    animation: fall 1s ease-in-out infinite;
+}
+
+.confetti span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.confetti span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+.confetti span:nth-child(4) {
+    animation-delay: 0.6s;
+}
+
+.confetti span:nth-child(5) {
+    animation-delay: 0.8s;
+}
+
+@keyframes fall {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.trophy {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0) scale(1);
+    }
+
+    50% {
+        transform: translateY(-10px) scale(1.1);
+    }
+}
+
+.title {
+    color: #ffd700;
+    font-size: 2rem;
+    margin: 0 0 0.5rem 0;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+.subtitle {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+    margin: 0 0 1.5rem 0;
+}
+
+.voucher {
+    background: linear-gradient(135deg, #4caf50, #2e7d32);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.voucher::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg,
+            transparent 40%,
+            rgba(255, 255, 255, 0.1) 50%,
+            transparent 60%);
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(100%);
+    }
+}
+
+.voucherHeader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    margin-bottom: 0.75rem;
+}
+
+.voucherEmoji {
+    font-size: 1.25rem;
+}
+
+.voucherAmount {
+    color: white;
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+}
+
+.voucherText {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+}
+
+.voucherFooter {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.8rem;
+}
+
+.message {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.message p {
+    color: #ffd700;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+}
+
+.message ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.message li {
+    color: rgba(255, 255, 255, 0.8);
+    padding: 0.25rem 0;
+    font-size: 0.9rem;
+}
+
+.actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.homeButton,
+.resetButton {
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    border: none;
+}
+
+.homeButton {
+    background: linear-gradient(90deg, #ffd700, #ffaa00);
+    color: #1a1a2e;
+}
+
+.resetButton {
+    background: transparent;
+    color: #ffd700;
+    border: 2px solid #ffd700;
+}
+
+.homeButton:hover,
+.resetButton:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .modal {
+        padding: 1.5rem;
+    }
+
+    .title {
+        font-size: 1.5rem;
+    }
+
+    .voucherAmount {
+        font-size: 2.5rem;
+    }
+
+    .actions {
+        flex-direction: column;
+    }
+}

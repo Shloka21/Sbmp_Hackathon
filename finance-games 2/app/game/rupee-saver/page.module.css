@@ -1,0 +1,497 @@
+.container {
+    min-height: 100vh;
+    padding: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Header */
+.header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.backBtn {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.backBtn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #4caf50;
+    margin: 0;
+}
+
+/* Day Info */
+.dayInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.dayBadge {
+    background: linear-gradient(90deg, #4caf50, #8bc34a);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+.income {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+}
+
+.income span {
+    color: #ffd700;
+    font-weight: 700;
+    font-size: 1.25rem;
+}
+
+/* Stats Row */
+.statsRow {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.statCard {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 1rem;
+    text-align: center;
+}
+
+.statLabel {
+    display: block;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.statValue {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.spent {
+    color: #f44336;
+}
+
+.goalMet {
+    color: #4caf50;
+}
+
+.goalNotMet {
+    color: #ff9800;
+}
+
+.total {
+    color: #ffd700;
+}
+
+/* Goal Indicator */
+.goalIndicator {
+    background: rgba(255, 152, 0, 0.2);
+    border: 1px solid rgba(255, 152, 0, 0.4);
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.goalMetBg {
+    background: rgba(76, 175, 80, 0.2);
+    border-color: rgba(76, 175, 80, 0.4);
+}
+
+/* Items Section */
+.itemsSection {
+    margin-bottom: 1.5rem;
+}
+
+.itemsSection h3 {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.itemsGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    min-height: 80px;
+}
+
+.itemCard {
+    background: linear-gradient(145deg, #2a2a40, #1e1e2e);
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    border-radius: 12px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    cursor: grab;
+    transition: all 0.2s ease;
+    min-width: 90px;
+}
+
+.itemCard:hover {
+    transform: scale(1.05);
+    border-color: #ffd700;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.2);
+}
+
+.itemCard:active {
+    cursor: grabbing;
+}
+
+.itemEmoji {
+    font-size: 1.75rem;
+}
+
+.itemName {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.itemPrice {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #ffd700;
+}
+
+.allDone {
+    color: #4caf50;
+    font-style: italic;
+    width: 100%;
+    text-align: center;
+}
+
+/* Drop Zones */
+.dropZones {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.dropZone {
+    border: 3px dashed rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 1rem;
+    min-height: 200px;
+    transition: all 0.3s ease;
+}
+
+.dropZone:hover {
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.spendZone {
+    background: rgba(244, 67, 54, 0.1);
+}
+
+.spendZone:hover {
+    border-color: #f44336;
+    background: rgba(244, 67, 54, 0.15);
+}
+
+.saveZone {
+    background: rgba(76, 175, 80, 0.1);
+}
+
+.saveZone:hover {
+    border-color: #4caf50;
+    background: rgba(76, 175, 80, 0.15);
+}
+
+.zoneHeader {
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.spendZone .zoneHeader {
+    color: #f44336;
+}
+
+.saveZone .zoneHeader {
+    color: #4caf50;
+}
+
+.zoneItems {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    min-height: 100px;
+}
+
+.droppedItem {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 0.5rem 0.75rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.zoneTotal {
+    text-align: center;
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-weight: 600;
+}
+
+/* End Day Button */
+.endDayBtn {
+    width: 100%;
+    background: linear-gradient(90deg, #4caf50, #8bc34a);
+    color: white;
+    padding: 1rem;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 1.5rem;
+}
+
+.endDayBtn:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 20px rgba(76, 175, 80, 0.4);
+}
+
+/* History */
+.history {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 1rem;
+}
+
+.history h4 {
+    margin: 0 0 1rem 0;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.historyBars {
+    display: flex;
+    gap: 0.5rem;
+    align-items: flex-end;
+    height: 80px;
+}
+
+.historyBar {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    height: 100%;
+    justify-content: flex-end;
+    overflow: hidden;
+}
+
+.barFill {
+    width: 100%;
+    background: linear-gradient(180deg, #4caf50, #8bc34a);
+    border-radius: 4px 4px 0 0;
+    transition: height 0.5s ease;
+}
+
+.historyBar span {
+    font-size: 0.7rem;
+    padding: 0.25rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Result Screen */
+.resultScreen {
+    text-align: center;
+    padding: 2rem;
+}
+
+.resultEmoji {
+    font-size: 5rem;
+    margin-bottom: 1rem;
+    animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.resultTitle {
+    font-size: 2.5rem;
+    margin: 0 0 0.5rem 0;
+    color: #ffd700;
+}
+
+.resultMessage {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 1.5rem;
+}
+
+.pointsEarned {
+    background: linear-gradient(90deg, #ffd700, #ff8c00);
+    color: #1a1a2e;
+    padding: 0.75rem 1.5rem;
+    border-radius: 20px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.savingsJar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.jarEmoji {
+    font-size: 4rem;
+}
+
+.jarAmount {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #4caf50;
+}
+
+.lessonBox {
+    background: rgba(255, 215, 0, 0.1);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.lessonBox h3 {
+    margin: 0 0 0.75rem 0;
+    color: #ffd700;
+}
+
+.lessonBox ul {
+    margin: 0;
+    padding-left: 1.5rem;
+}
+
+.lessonBox li {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 0.5rem;
+}
+
+.resultActions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.playAgainBtn,
+.homeBtn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.playAgainBtn {
+    background: linear-gradient(90deg, #4caf50, #8bc34a);
+    color: white;
+}
+
+.homeBtn {
+    background: transparent;
+    border: 2px solid #ffd700;
+    color: #ffd700;
+}
+
+.playAgainBtn:hover,
+.homeBtn:hover {
+    transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .statsRow {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+
+    .dropZones {
+        grid-template-columns: 1fr;
+    }
+
+    .resultTitle {
+        font-size: 2rem;
+    }
+
+    .resultActions {
+        flex-direction: column;
+    }
+}

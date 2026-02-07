@@ -1,0 +1,204 @@
+.page {
+  min-height: 100vh;
+  animation: fadeIn 0.5s ease;
+}
+
+/* Hero Section */
+.hero {
+  background: linear-gradient(180deg, rgba(26, 26, 46, 0.9) 0%, rgba(15, 15, 26, 1) 100%);
+  padding: 4rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.heroContent {
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin: 0 0 1rem 0;
+  background: linear-gradient(135deg, #ffd700, #ff8c00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.titleEmoji {
+  font-size: 3rem;
+  -webkit-text-fill-color: initial;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 0 1rem 0;
+  font-weight: 600;
+}
+
+.description {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Games Section */
+.gamesSection {
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.sectionTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 0 0 0.75rem 0;
+  color: #ffffff;
+}
+
+.sectionSubtitle {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0 0 2.5rem 0;
+  font-size: 1rem;
+}
+
+.highlight {
+  color: #ffd700;
+  font-weight: 600;
+}
+
+.gamesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Learning Section */
+.learningSection {
+  padding: 4rem 2rem;
+  background: linear-gradient(180deg, rgba(26, 26, 46, 0.5) 0%, rgba(26, 26, 46, 0) 100%);
+}
+
+.learningGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  max-width: 1000px;
+  margin: 2rem auto 0;
+}
+
+.learningCard {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.learningCard:hover {
+  background: rgba(255, 255, 255, 0.06);
+  transform: translateY(-4px);
+  border-color: rgba(255, 215, 0, 0.3);
+}
+
+.learningEmoji {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.learningCard h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+  color: #ffd700;
+}
+
+.learningCard p {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 2rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .title {
+    font-size: 2.5rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .titleEmoji {
+    font-size: 2.5rem;
+  }
+
+  .subtitle {
+    font-size: 1.25rem;
+  }
+
+  .hero {
+    padding: 3rem 1.5rem;
+  }
+
+  .gamesSection,
+  .learningSection {
+    padding: 3rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 2rem;
+  }
+
+  .sectionTitle {
+    font-size: 1.5rem;
+  }
+}

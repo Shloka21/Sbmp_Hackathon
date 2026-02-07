@@ -1,0 +1,347 @@
+.container {
+    min-height: 100vh;
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.backBtn {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #00bcd4;
+    margin: 0;
+}
+
+.incomeCard {
+    background: linear-gradient(135deg, #00bcd4, #0097a7);
+    border-radius: 16px;
+    padding: 1.5rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.incomeCard h3 {
+    margin: 0 0 0.5rem 0;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.incomeAmount {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: white;
+}
+
+.section {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.section h3 {
+    margin: 0 0 1rem 0;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+}
+
+.itemsGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+}
+
+.needItem,
+.wantItem {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 0.75rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.needItem {
+    border: 1px solid rgba(244, 67, 54, 0.3);
+}
+
+.wantItem {
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.wantItem:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.wantItem.selected {
+    border-color: #4caf50;
+    background: rgba(76, 175, 80, 0.1);
+}
+
+.itemEmoji {
+    font-size: 1.25rem;
+}
+
+.itemName {
+    flex: 1;
+    font-size: 0.9rem;
+}
+
+.itemAmount {
+    font-weight: 600;
+    color: #ffd700;
+}
+
+.checkbox {
+    font-size: 1rem;
+}
+
+.subtotal {
+    margin-top: 0.75rem;
+    text-align: right;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.balanceCard {
+    background: rgba(255, 215, 0, 0.1);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    border-radius: 16px;
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.balanceRow {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.balanceRow.remaining {
+    border-bottom: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
+}
+
+.good {
+    color: #4caf50;
+}
+
+.warning {
+    color: #ff9800;
+}
+
+.positive {
+    color: #4caf50;
+}
+
+.negative {
+    color: #f44336;
+}
+
+.goalHint {
+    margin: 0.75rem 0 0 0;
+    font-size: 0.85rem;
+    color: #ff9800;
+    text-align: center;
+}
+
+.submitBtn {
+    width: 100%;
+    background: linear-gradient(90deg, #00bcd4, #0097a7);
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.submitBtn:hover {
+    transform: scale(1.02);
+}
+
+/* Event Screen */
+.eventScreen {
+    text-align: center;
+    padding: 3rem;
+}
+
+.eventEmoji {
+    font-size: 5rem;
+    margin-bottom: 1rem;
+}
+
+.eventScreen h2 {
+    color: #ffd700;
+    margin: 0 0 1rem 0;
+}
+
+.eventScreen p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.1rem;
+}
+
+.continueBtn {
+    margin-top: 2rem;
+    background: linear-gradient(90deg, #ffd700, #ff8c00);
+    color: #1a1a2e;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* Result Screen */
+.resultScreen {
+    text-align: center;
+    padding: 2rem;
+}
+
+.resultEmoji {
+    font-size: 5rem;
+    margin-bottom: 1rem;
+}
+
+.resultTitle {
+    font-size: 2rem;
+    color: #ffd700;
+    margin: 0 0 0.5rem 0;
+}
+
+.resultMessage {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 1.5rem;
+}
+
+.pointsEarned {
+    background: linear-gradient(90deg, #ffd700, #ff8c00);
+    color: #1a1a2e;
+    padding: 0.75rem 1.5rem;
+    border-radius: 20px;
+    font-weight: 700;
+    display: inline-block;
+    margin-bottom: 1.5rem;
+}
+
+.summary {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.summary h3 {
+    margin: 0 0 0.75rem 0;
+}
+
+.summaryRow {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.4rem 0;
+}
+
+.summaryRow.total {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    margin-top: 0.5rem;
+    padding-top: 0.75rem;
+    font-weight: 700;
+}
+
+.lessonBox {
+    background: rgba(255, 215, 0, 0.1);
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.lessonBox h3 {
+    color: #ffd700;
+    margin: 0 0 0.5rem 0;
+}
+
+.lessonBox ul {
+    margin: 0;
+    padding-left: 1.25rem;
+}
+
+.lessonBox li {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+}
+
+.resultActions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.playAgainBtn,
+.homeBtn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+}
+
+.playAgainBtn {
+    background: linear-gradient(90deg, #00bcd4, #0097a7);
+    color: white;
+}
+
+.homeBtn {
+    background: transparent;
+    border: 2px solid #ffd700;
+    color: #ffd700;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .itemsGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .resultActions {
+        flex-direction: column;
+    }
+}
